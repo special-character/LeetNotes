@@ -1,0 +1,22 @@
+{
+  "name": "leetnotes",
+  "version": "0.0.1",
+  "description": "Algorithms, data structures, practice problems, specific language practice, books, and notes for all.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brobertsUPS/leetnotes.git"
+  },
+  "author": "Brandon Roberts And Chris Workman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brobertsUPS/leetnotes/issues"
+  },
+  "homepage": "https://github.com/brobertsUPS/leetnotes#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
