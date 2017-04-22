@@ -12,7 +12,7 @@ This is a formulation of algorithms, data structures, practice problems, and spe
 * Linear - Array, Resizing array, linked list
 * Trees - Binary, B-trees, Heaps, Tries, Self balancing
 * Hashes
-* Graphs
+* Graphs - Cycle detection, Coloring, Representations
 
 3. Practice Problems
 * 2nd largest item in a BST
