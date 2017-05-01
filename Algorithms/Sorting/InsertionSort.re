@@ -1,6 +1,5 @@
 let lst = [7,2,3,1,9,18,14,22,35];
 
-let bb = fun x => x;
 let rec insert = fun (x: int) (lst: list(int)) :list(int) => switch lst {
     | [] => [x]
     | [hd, ...tl] => x < hd ? [x,hd,...tl] : [hd]@(insert x [...tl]) 
