@@ -1,5 +1,4 @@
-let lst = [7,2,3,1,7,18,3,22,35];
-let a = List.length lst;
+let lst = [7,2,3,1,9,18,14,22,35];
 
 let bb = fun x => x;
 let rec insert = fun (x: int) (lst: list(int)) :list(int) => switch lst {
@@ -13,7 +12,8 @@ let rec sort = fun l => switch l {
     | [hd, ...tl] => insert hd (sort [...tl])
 };
 
-let result = sort lst;
-let fifthElement = List.nth result 5;
+let print = fun lst => List.iter (fun s => ( print_endline (string_of_int(s)))) lst;
+let sumList = fun lst => List.fold_left (fun acc x => acc + x) 0 lst; 
 
-print_endline (string_of_int(fifthElement))
+print (sort lst);
+print_endline (string_of_int(sumList lst));
