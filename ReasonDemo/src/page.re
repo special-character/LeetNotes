@@ -9,7 +9,9 @@ module Page = {
     None
   };
   let render {props, updater} =>
-    <div onClick=(updater handleClick)> (ReactRe.stringToElement props.message) </div>;
+    <div>
+    <div onClick=(updater handleClick)> (ReactRe.stringToElement props.message) </div>
+    <Button/> </div>;
 };
 
 /* This is the equivalent of React.createClass 

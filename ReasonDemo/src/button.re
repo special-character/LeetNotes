@@ -1,9 +1,9 @@
+include ReactRe; 
 
-external button : ReactRe.reactClass = "Button" [@@bs.module]; 
+external foo : ReactRe.reactClass = "react-bootstrap/lib/Button.js" [@@bs.module];
 
 /* this is the call that takes in Reason data and converts it to JS data. Make sure you get the conversion right! JS won't warn you of type errors... */
-let createElement
+let createElement =
   ReactRe.wrapPropsShamelessly
-    button
-    {
-    };
+    foo
+    (Js.Obj.empty ())
