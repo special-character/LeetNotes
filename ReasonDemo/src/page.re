@@ -1,17 +1,29 @@
-
+open Pervasives;
 /* This is like the object declaration part of ReactJS' React.createClass()*/
 module Page = {
-  include ReactRe.Component;
+  include ReactRe.Component.Stateful;
   type props = {message: string};
+  type state = {counter: int};
   let name = "Page";
-  let handleClick _ _ => {
-    Js.log "clicked!";
-    None
+  let getInitialState _ => {
+    counter: 0
   };
-  let render {props, updater} =>
+  let handleClick {state} _ => {
+    /*Js.log "clicked!";*/
+    Js.log "clicked";
+    /*let counter = state.counter + 1;*/
+    switch (state.counter) {
+    | -1 => None 
+    | nonEmptyValue => Some {counter:nonEmptyValue+1}
+    };
+  };
+
+  let render {state, props, updater} =>
     <div>
     <div onClick=(updater handleClick)> (ReactRe.stringToElement props.message) </div>
-    <Button/> </div>;
+    <Button>(ReactRe.stringToElement "Click Me")</Button>
+    <div>(ReactRe.stringToElement (Js.String.make state.counter))</div>
+     </div>;
 };
 
 /* This is the equivalent of React.createClass 
