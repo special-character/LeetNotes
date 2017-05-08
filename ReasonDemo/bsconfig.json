@@ -1,0 +1,16 @@
+/* bsconfig.json */
+{
+  "name": "hello",
+  "sources": [
+    "src"
+  ],
+"bs-dependencies": [
+    "reason-react",
+    "reductive"
+  ],
+  "reason": {
+    "react-jsx": true
+  }
+}
+
+

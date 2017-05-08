@@ -1,0 +1,29 @@
+{
+  "name": "reason-webpack",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npm-run-all build:*",
+    "build:bsb": "bsb -make-world",
+    "build:webpack": "webpack -p"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bs-loader": "^1.0.0",
+    "bs-platform": "^1.5.0",
+    "npm-run-all": "^4.0.2",
+    "reason-js": "0.0.16",
+    "reason-react": "^0.1.2",
+    "reductive": "0.0.1",
+    "rehydrate": "git+https://github.com/reasonml/rehydrate.git",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
+    "reason-react": "^0.1.3"
+  }
+}
