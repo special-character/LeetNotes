@@ -9,9 +9,7 @@ module Page = {
     counter: 0
   };
   let handleClick {state} _ => {
-    /*Js.log "clicked!";*/
     Js.log "clicked";
-    /*let counter = state.counter + 1;*/
     switch (state.counter) {
     | -1 => None 
     | nonEmptyValue => Some {counter:nonEmptyValue+1}
