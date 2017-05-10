@@ -5,8 +5,8 @@
   "description": "",
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:bsb": "bsb -make-world",
-    "build:webpack": "webpack -p"
+    "build:bsb": "bsb -w",
+    "build:webpack": "webpack --watch"
   },
   "author": "",
   "license": "ISC",

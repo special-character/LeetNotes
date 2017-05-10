@@ -45,7 +45,7 @@ module Page = {
     <Row>
       <ModalDialog>
       <ModalHeader>
-          <ModalTitle>(ReactRe.stringToElement (Js.String.make "Fask Ass Title"))</ModalTitle>
+          <ModalTitle>(ReactRe.stringToElement (Js.String.make "Fake Ass Title"))</ModalTitle>
         </ModalHeader>
         <ModalBody>
           (ReactRe.stringToElement (Js.String.make "Ayoooo"))
