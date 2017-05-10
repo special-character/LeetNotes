@@ -1,27 +1,41 @@
 open Pervasives;
+open ReactRe; 
 /* This is like the object declaration part of ReactJS' React.createClass()*/
 module Page = {
   include ReactRe.Component.Stateful;
   type props = {message: string};
-  type state = {counter: int};
+  type state = {
+                  counter: int,
+                  textBoxValue: string
+               };
   let name = "Page";
   let getInitialState _ => {
-    counter: 0
+    counter: 0,
+    textBoxValue: "..."
   };
   let handleClick {state} _ => {
     Js.log "clicked";
     switch (state.counter) {
     | -1 => None 
-    | nonEmptyValue => Some {counter:nonEmptyValue+1}
+    | nonEmptyValue => Some {...state, counter:nonEmptyValue+1}
     };
   };
 
+  let handleTextBoxChange {state} event => {
+     Js.log state.textBoxValue; 
+     Some {...state, 
+            textBoxValue:(ReactDOMRe.domElementToObj (ReactEventRe.Keyboard.target event))##value
+            };
+  };
+  
+  
   let render {state, props, updater} =>
     <div>
-    <div onClick=(updater handleClick)> (ReactRe.stringToElement props.message) </div>
-    <Button>(ReactRe.stringToElement "Click Me")</Button>
+    <div> (ReactRe.stringToElement props.message) </div>
+    <Button onClick=(updater handleClick)>(ReactRe.stringToElement "Click Me")</Button>
+    <FormControl value=state.textBoxValue onChange=(updater handleTextBoxChange)/>
     <div>(ReactRe.stringToElement (Js.String.make state.counter))</div>
-     </div>;
+    </div>;
 };
 
 /* This is the equivalent of React.createClass 
