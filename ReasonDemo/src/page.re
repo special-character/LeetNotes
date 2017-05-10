@@ -33,8 +33,19 @@ module Page = {
     <div>
     <div> (ReactRe.stringToElement props.message) </div>
     <Button onClick=(updater handleClick)>(ReactRe.stringToElement "Click Me")</Button>
+    <ControlLabel>(ReactRe.stringToElement "Header for Component")</ControlLabel>
     <FormControl value=state.textBoxValue onChange=(updater handleTextBoxChange)/>
     <div>(ReactRe.stringToElement (Js.String.make state.counter))</div>
+    <ModalDialog>
+    <ModalHeader>
+        <ModalTitle>(ReactRe.stringToElement (Js.String.make "Fask Ass Title"))</ModalTitle>
+      </ModalHeader>
+      <ModalBody>
+        (ReactRe.stringToElement (Js.String.make "Ayoooo"))
+      </ModalBody>
+      <ModalFooter>
+      </ModalFooter>
+    </ModalDialog>
     </div>;
 };
 
