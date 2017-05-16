@@ -47804,14 +47804,20 @@ var class_tables = [
   0
 ];
 
-function ajaxPost(url, _) {
-  return new Promise(function (_, _$1) {
+var class_tables$1 = [
+  0,
+  0,
+  0
+];
+
+function ajaxPost(url, data) {
+  return new Promise(function (res, rej) {
               var req = new XMLHttpRequest();
               req.open("POST", url);
               req.open("Content-Type", "application/json; charset=utf-8");
               req.open("Accept", "application/json, text/javascript");
               req.onerror = function () {
-                if (!class_tables[0]) {
+                if (!class_tables$1[0]) {
                   var $$class = CamlinternalOO.create_table(shared);
                   var env = CamlinternalOO.new_variable($$class, "");
                   var ids = CamlinternalOO.get_method_labels($$class, shared);
@@ -47833,16 +47839,47 @@ function ajaxPost(url, _) {
                     return self;
                   };
                   CamlinternalOO.init_class($$class);
-                  class_tables[0] = env_init;
+                  class_tables$1[0] = env_init;
                 }
-                Curry._1(class_tables[0], [req]);
+                Curry._1(rej, Curry._1(class_tables$1[0], [req]));
                 console.log("Request failed");
                 return /* () */0;
               };
               req.onload = function () {
+                var status = req.status;
+                if (status === "200") {
+                  Curry._1(res, JSON.parse(req.responseText));
+                } else {
+                  if (!class_tables[0]) {
+                    var $$class = CamlinternalOO.create_table(shared);
+                    var env = CamlinternalOO.new_variable($$class, "");
+                    var ids = CamlinternalOO.get_method_labels($$class, shared);
+                    var status$1 = ids[0];
+                    var message = ids[1];
+                    CamlinternalOO.set_methods($$class, /* array */[
+                          message,
+                          function (self$neg2) {
+                            return self$neg2[env][0].status;
+                          },
+                          status$1,
+                          function (self$neg2) {
+                            return self$neg2[env][0].status;
+                          }
+                        ]);
+                    var env_init = function (env$1) {
+                      var self = CamlinternalOO.create_object_opt(0, $$class);
+                      self[env] = env$1;
+                      return self;
+                    };
+                    CamlinternalOO.init_class($$class);
+                    class_tables[0] = env_init;
+                  }
+                  Curry._1(rej, Curry._1(class_tables[0], [req]));
+                }
                 console.log("Request succeded");
                 return /* () */0;
               };
+              req.send(JSON.stringify(data));
               return /* () */0;
             });
 }
