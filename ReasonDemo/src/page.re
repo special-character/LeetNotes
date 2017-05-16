@@ -1,5 +1,6 @@
 open Pervasives;
 open ReactRe; 
+open Ajax; 
 /* This is like the object declaration part of ReactJS' React.createClass()*/
 module Page = {
   include ReactRe.Component.Stateful;
@@ -15,6 +16,8 @@ module Page = {
   };
 
   let sortNumbers = fun nums:string => {
+
+    let d = Ajax.ajaxPost "http://google" "data"; 
 
     let result = Js.String.splitByRe (Js.Re.fromString ",") nums
     |> Array.to_list
