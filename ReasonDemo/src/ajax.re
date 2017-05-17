@@ -4,7 +4,7 @@ type xmlt;
 type promt;
 type jsonr;
 type reject_obj = {. message:string, status:string };
-type handler = (jsonr => unit) => (reject_obj => unit) => unit;
+type handler = (Js_json.t => unit) => (reject_obj => unit) => unit;
 
 external req_open : xmlt => string => string => unit = "open" [@@bs.send];
 external req_set_header : xmlt => string => string => unit = "setRequestHeader" [@@bs.send];
@@ -19,7 +19,7 @@ external req_set_on_load : xmlt => (unit => unit) => unit = "onload" [@@bs.set];
 external xmlhttprequest : unit => xmlt  = "XMLHttpRequest" [@@bs.new];
 external create_promise : handler => promt = "Promise" [@@bs.new];
 
-external unsafeJsonParse : string => jsonr = "JSON.parse" [@@bs.val];
+external unsafeJsonParse : string => Js_json.t = "JSON.parse" [@@bs.val];
 external unsafeJsonStringify : Js_json.t => string = "JSON.stringify" [@@bs.val];
  
  let ajaxPost = fun url (data:Js_json.t) => {
@@ -35,7 +35,6 @@ external unsafeJsonStringify : Js_json.t => string = "JSON.stringify" [@@bs.val]
             rej { pub message = get_req_responseStatus req ; 
               pub status = get_req_responseStatus req;
             };
-            Js.log url;
             Js.log "Request failed";
         });
 

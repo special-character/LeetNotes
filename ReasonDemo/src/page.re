@@ -18,7 +18,6 @@ module Page = {
 
   let sortNumbers = fun nums:string => {
 
-
     let data = Js_json.parse {| {"id" : "chris"}|};
     let d = Ajax.ajaxPost "http://localhost:8081/listUsers" data; 
 
@@ -41,7 +40,6 @@ module Page = {
   };
 
   let handleTextBoxChange {state} event => {
-     /*Js.log state.textBoxValue; */
      Some {...state, 
             textBoxValue:(ReactDOMRe.domElementToObj (ReactEventRe.Keyboard.target event))##value
             };
