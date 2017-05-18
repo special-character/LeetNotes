@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId <Page message="Hello!" /> "index";
+ReactDOMRe.renderToElementWithId <Home name="Home Page" /> "index";
