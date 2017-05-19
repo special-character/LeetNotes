@@ -2,7 +2,7 @@
 {
   "name": "hello",
   "sources": [
-    "src"
+    "src", "src/bootstrap"
   ],
 "bs-dependencies": [
     "reason-react",
