@@ -5,3 +5,5 @@
 /bundledOutputs/
 npm-debug.log
 .DS_Store
+/build/bundle.js
+/build/bundle.js.map
