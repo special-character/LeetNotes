@@ -60,16 +60,8 @@ module Page = {
     </Row>
     <div>(ReactRe.stringToElement (Js.String.make state.counter))</div>
     <Row>
-      /*<ModalDialog>
-      <ModalHeader>
-          <ModalTitle>(ReactRe.stringToElement (Js.String.make "Fake Ass Title"))</ModalTitle>
-        </ModalHeader>
-        <ModalBody>
-          (ReactRe.stringToElement (Js.String.make "Ayoooo"))
-        </ModalBody>
-        <ModalFooter>
-        </ModalFooter>
-      </ModalDialog>*/
+    <Panel header="Backend" bsStyle="primary">
+    </Panel>
     </Row>
     </div>;
 };

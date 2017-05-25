@@ -1,7 +1,7 @@
 open Pervasives;
 open ReactRe;
 
-module Home = {
+module ReportingComponent = {
     include ReactRe.Component;
     type props = {name: string}; 
     let name = "Home";
