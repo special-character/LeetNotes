@@ -8,7 +8,18 @@ module Home = {
 
     let render {state, props, updater} =>
     <div>
-        <Navigation name="MedInsight Engineering" pages={["About Us","Blog","Jobs"]}/>
+        <Navigation name="MedInsight Engineering" pages={["About Us","Blog","Internal Metrics","Jobs"]}/>
+        <Row>
+            <Col md=2>
+            </Col>
+                <Col md=8>
+                    <Jumbotron>
+                        <h2>(ReactRe.stringToElement "Home of MedInsight Engineering")</h2>
+                    </Jumbotron>
+                </Col>
+            <Col md=2>
+            </Col>
+        </Row>
     </div>;
 };
 

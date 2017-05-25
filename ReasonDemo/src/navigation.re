@@ -16,7 +16,7 @@ module Navigation = {
                     |> List.map (fun name => <NavItem eventKey={1} href="#">(ReactRe.stringToElement name)</NavItem>);
     
         <div>
-            <Navbar>
+            <Navbar inverse=true>
                 <NavbarHeader>
                 <NavbarBrand>
                     <a href="#">(ReactRe.stringToElement name)</a>
