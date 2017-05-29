@@ -22,9 +22,12 @@ external create_promise : handler => promt = "Promise" [@@bs.new];
 external unsafeJsonParse : string => Js_json.t = "JSON.parse" [@@bs.val];
 external unsafeJsonStringify : Js_json.t => string = "JSON.stringify" [@@bs.val];
 
-type bb;
-external bnd : (Js_json.t => unit) => string => bb = "bind" [@@bs.send];
-external then_ : promt => (bb) => unit = "then" [@@bs.send];
+type handleResponse = (Js_json.t => unit);
+/*external _bind : (Js_json.t => unit) => string => handleResponse = "bind" [@@bs.send];*/
+/*external _bind : (Js_json.t => unit) => string => handleResponse = "bind" [@@bs.send];*/
+external _then : promt => handleResponse => unit = "then" [@@bs.send];
+
+external _this : unit = "this" [@@bs.val];
  
  let ajaxPost = fun url (data:Js_json.t) => {
 

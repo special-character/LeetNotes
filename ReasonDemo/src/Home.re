@@ -9,15 +9,23 @@ module Home = {
 
     let handleData = fun data => {
         let p = 8;
+        let d = data;
+        Js.log d;
         Js.log p;
     };
 
     let componentDidMount {setState} => {        
         let data = Js_json.parse {| {"id" : "chris"}|};
-        /*let d = Ajax.ajaxPost "http://localhost:8081/listUsers" data;  */
-        let dataHandler = Ajax.bnd handleData "hello";
-        let e = Ajax.then_ (Ajax.ajaxPost "http://localhost:8081/listUsers" data) (Ajax.bnd handleData "hello");
-        Js.log e; 
+        
+        let self = Ajax._this; 
+
+
+        let result = 
+         handleData 
+        |> Ajax._then (Ajax.ajaxPost "http://localhost:8081/listUsers" data);
+        
+        Js.log result; 
+        Js.log self;
         None; 
     };
 

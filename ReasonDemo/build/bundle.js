@@ -22054,15 +22054,16 @@ var getInitialState = ReactRe.Component[7];
 
 var name = "Home";
 
-function handleData() {
+function handleData(data) {
+  console.log(data);
   console.log(8);
   return /* () */0;
 }
 
 function componentDidMount() {
   var data = JSON.parse(" {\"id\" : \"chris\"}");
-  handleData.bind("hello");
-  Ajax.ajaxPost("http://localhost:8081/listUsers", data).then(handleData.bind("hello"));
+  Ajax.ajaxPost("http://localhost:8081/listUsers", data).then(handleData);
+  console.log(/* () */0);
   console.log(/* () */0);
   return /* None */0;
 }
