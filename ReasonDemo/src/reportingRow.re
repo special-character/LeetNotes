@@ -1,4 +1,4 @@
-open Pervasives;
+/*open Pervasives;
 open ReactRe;
 
 module ReportingComponent = {
@@ -39,4 +39,4 @@ module ReportingComponent = {
 
 include ReactRe.CreateComponent Home;
 
-let createElement ::name => wrapProps {name: name};
+let createElement ::name => wrapProps {name: name};*/

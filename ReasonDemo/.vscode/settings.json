@@ -1,0 +1,12 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "workbench.colorCustomizations": {
+        "activityBar.foreground": "#00FFFF",
+        "activityBarBadge.background": "#ff0000",
+        "dropdown.background": "#990000",
+        "statusBar.background": "#990000",
+        "tab.activeForeground": "#00ffff",
+        "titleBar.activeBackground": "#ff0000",
+        "sideBarTitle.foreground": "#00ffff"
+    }
+}

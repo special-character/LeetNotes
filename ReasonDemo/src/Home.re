@@ -1,10 +1,25 @@
 open Pervasives;
 open ReactRe;
+open Markdown; 
 
 module Home = {
     include ReactRe.Component;
     type props = {name: string}; 
     let name = "Home";
+
+    let handleData = fun data => {
+        let p = 8;
+        Js.log p;
+    };
+
+    let componentDidMount {setState} => {        
+        let data = Js_json.parse {| {"id" : "chris"}|};
+        /*let d = Ajax.ajaxPost "http://localhost:8081/listUsers" data;  */
+        let dataHandler = Ajax.bnd handleData "hello";
+        let e = Ajax.then_ (Ajax.ajaxPost "http://localhost:8081/listUsers" data) (Ajax.bnd handleData "hello");
+        Js.log e; 
+        None; 
+    };
 
     let render {state, props, updater} =>
     <div>
@@ -34,6 +49,7 @@ module Home = {
             <Col md=2>
             </Col>
         </Row>
+        <Markdown markup="#hello, markdown!" />
     </div>;
 };
 

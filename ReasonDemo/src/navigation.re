@@ -14,6 +14,10 @@ module Navigation = {
         let { pages, name } = props;
         let navItems = pages 
                     |> List.map (fun name => <NavItem eventKey={1} href="#">(ReactRe.stringToElement name)</NavItem>);
+
+        /*let tt = MarkdownConverter.ttt();
+        let bbb = MarkdownConverter.makeHtml tt "#hello, markdown!"; 
+        Js.log bbb;*/
     
         <div>
             <Navbar inverse=true>

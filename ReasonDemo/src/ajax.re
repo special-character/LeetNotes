@@ -21,6 +21,10 @@ external create_promise : handler => promt = "Promise" [@@bs.new];
 
 external unsafeJsonParse : string => Js_json.t = "JSON.parse" [@@bs.val];
 external unsafeJsonStringify : Js_json.t => string = "JSON.stringify" [@@bs.val];
+
+type bb;
+external bnd : (Js_json.t => unit) => string => bb = "bind" [@@bs.send];
+external then_ : promt => (bb) => unit = "then" [@@bs.send];
  
  let ajaxPost = fun url (data:Js_json.t) => {
 
@@ -40,14 +44,16 @@ external unsafeJsonStringify : Js_json.t => string = "JSON.stringify" [@@bs.val]
 
         req_set_on_load req (fun () => {
             let status = Js.String.make (get_req_responseStatus req);
+            let response = 
             switch status {
                 | "200" => res (unsafeJsonParse (get_req_responseText req));
                 | _     => rej { pub message = get_req_responseStatus req ; 
                             pub status = get_req_responseStatus req;
                         };
             };
-
             Js.log "Request succeded";
+            Js.log (get_req_responseText req);
+            response 
         });
         req_send req;
 
