@@ -15,7 +15,6 @@ module Page = {
     textBoxValue: "..."
   };
 
-
   let sortNumbers = fun nums:string => {
 
     let data = Js_json.parse {| {"id" : "chris"}|};

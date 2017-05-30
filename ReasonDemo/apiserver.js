@@ -23,7 +23,7 @@ app.get('/listUsers', function (req, res) {
 
     res.setHeader('Access-Control-Allow-Credentials', true);
 
-    var result = {"val" : "Hello There"}
+    var result = {"val" : `Hello World` }
     res.end(JSON.stringify(result));
 })
 

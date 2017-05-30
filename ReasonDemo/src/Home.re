@@ -3,32 +3,41 @@ open ReactRe;
 open Markdown; 
 
 module Home = {
-    include ReactRe.Component;
+    include ReactRe.Component.Stateful;
     type props = {name: string}; 
+    type contentItem = {
+        .
+        id: string,
+        content: string
+    };
+    type state = {
+        contentList : list contentItem  
+    };
     let name = "Home";
 
     let handleData = fun data => {
-        let p = 8;
         let d = data;
         Js.log d;
-        Js.log p;
+        Some d; 
     };
+
+    let getInitialState props => { contentList : [] };
 
     let componentDidMount {setState} => {        
-        let data = Js_json.parse {| {"id" : "chris"}|};
+        let data = Js_json.parse {| {"id" : "chris"} |};
         
-        let self = Ajax._this; 
-
+        /*let b = Ajax._bind handleData componentBag.state;
+        Js.log b; */
 
         let result = 
-         handleData 
+        handleData
         |> Ajax._then (Ajax.ajaxPost "http://localhost:8081/listUsers" data);
         
-        Js.log result; 
-        Js.log self;
+        Js.log result;  
         None; 
     };
-
+    
+    
     let render {state, props, updater} =>
     <div>
         <Navigation name="MedInsight Engineering" pages={["About Us","Blog","Internal Metrics","Jobs"]}/>
@@ -57,7 +66,7 @@ module Home = {
             <Col md=2>
             </Col>
         </Row>
-        <Markdown markup="#hello, markdown!" />
+        /*<Markdown markup=text />*/
     </div>;
 };
 
