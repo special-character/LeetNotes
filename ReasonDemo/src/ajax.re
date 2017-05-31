@@ -22,16 +22,9 @@ external create_promise : handler => promt = "Promise" [@@bs.new];
 external unsafeJsonParse : string => Js_json.t = "JSON.parse" [@@bs.val];
 external unsafeJsonStringify : Js_json.t => string = "JSON.stringify" [@@bs.val];
 
-type r;
-type handleResponse = (Js_json.t => r => option Js_json.t);
-type aa;
-
-
-external __bind : (Js_json.t => r => option Js_json.t) => r => handleResponse = "bind" [@@bs.send];
-/*external _bind : (Js_json.t => unit) => string => handleResponse = "bind" [@@bs.send];*/
 external _then : promt => 'a => unit = "then" [@@bs.send];
  
- let ajaxPost = fun url (data:Js_json.t) => {
+ let ajaxPost = fun url => {
 
     let promise = create_promise (fun res rej => {
     

@@ -17,8 +17,6 @@ module Page = {
 
   let sortNumbers = fun nums:string => {
 
-    let data = Js_json.parse {| {"id" : "chris"}|};
-    let d = Ajax.ajaxPost "http://localhost:8081/listUsers" data; 
 
     let result = Js.String.splitByRe (Js.Re.fromString ",") nums
     |> Array.to_list
