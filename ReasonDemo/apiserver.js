@@ -24,7 +24,7 @@ app.get('/listUsers', function (req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
 
     var result = {"id" : "chris",
-                  "content" : "Workman"
+                  "content" : "#hello, markdown!"
                  }
     res.end(JSON.stringify(result));
 })

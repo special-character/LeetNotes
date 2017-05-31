@@ -41,12 +41,14 @@ module Home = {
 
     let { contentList } = state;
 
+    let md = MarkdownConverter.mdInit();
+    
     let comps =
         contentList
         |> List.map (fun x =>  
         <Col md=4>
             <Panel header="Backend" bsStyle="primary">
-                (ReactRe.stringToElement x.content)
+                <Markdown markup=x.content/>
             </Panel>
         </Col>
         );
