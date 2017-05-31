@@ -3,6 +3,8 @@ open ReactRe;
 open Markdown; 
 
 module Home = {
+    
+    /*external _bind : (Js_json.t => state => option Js_json.t) => state => unit = "bind" [@@bs.send];*/
     include ReactRe.Component.Stateful;
     type props = {name: string}; 
     type contentItem = {
@@ -13,24 +15,33 @@ module Home = {
     type state = {
         contentList : list contentItem  
     };
+    /*external _bind : (Js_json.t => state => option Js_json.t) => state => unit = "bind" [@@bs.send];*/
     let name = "Home";
 
-    let handleData = fun data => {
+    let handleData data state => {
         let d = data;
         Js.log d;
-        Some d; 
+        None
     };
 
-    let getInitialState props => { contentList : [] };
+    let getInitialState props => { 
+        contentList : [ { pub id = "first"; pub content = "do this"; }] 
+    };
 
-    let componentDidMount {setState} => {        
+    type tt;
+    external _bind : (state => Js_json.t => option Js_json.t) => Js.null int => state => tt = "bind" [@@bs.send];
+
+    let componentDidMount {state, setState, handler} => {        
         let data = Js_json.parse {| {"id" : "chris"} |};
         
-        /*let b = Ajax._bind handleData componentBag.state;
-        Js.log b; */
+        let c = Js.Null.empty;
+        Js.log c;
+
+        let b = _bind handleData c state;
+        Js.log b; 
 
         let result = 
-        handleData
+        b
         |> Ajax._then (Ajax.ajaxPost "http://localhost:8081/listUsers" data);
         
         Js.log result;  
