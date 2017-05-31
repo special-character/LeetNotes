@@ -22822,8 +22822,16 @@ var jsPropsToReasonProps = include[6];
 
 var name = "Home";
 
-function handleData(data, _) {
+function handleData(param, data) {
   console.log(data);
+  var stateSetter = function () {
+    var ncl = /* :: */[
+      data,
+      /* [] */0
+    ];
+    return /* record */[/* contentList */ncl];
+  };
+  Curry._1(param[/* setState */5], stateSetter);
   return /* None */0;
 }
 
@@ -22865,14 +22873,14 @@ function componentDidMount(param) {
   var data = JSON.parse(" {\"id\" : \"chris\"} ");
   var c = null;
   console.log(c);
-  var b = handleData.bind(c, param[/* state */0]);
-  console.log(b);
+  var b = Curry._1(param[/* updater */2], handleData);
   Ajax.ajaxPost("http://localhost:8081/listUsers", data).then(b);
   console.log(/* () */0);
   return /* None */0;
 }
 
-function render() {
+function render(param) {
+  console.log(param[/* state */0]);
   return React.createElement("div", undefined, Curry._4(Navigation.createElement(/* :: */[
                       "About Us",
                       /* :: */[

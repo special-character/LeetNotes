@@ -18,9 +18,15 @@ module Home = {
     /*external _bind : (Js_json.t => state => option Js_json.t) => state => unit = "bind" [@@bs.send];*/
     let name = "Home";
 
-    let handleData data state => {
+    let handleData {setState} data => {
         let d = data;
         Js.log d;
+
+        let stateSetter {state} => { 
+        let ncl = [data];
+        {...state, contentList : ncl}
+        };
+        setState stateSetter;
         None
     };
 
@@ -31,14 +37,16 @@ module Home = {
     type tt;
     external _bind : (state => Js_json.t => option Js_json.t) => Js.null int => state => tt = "bind" [@@bs.send];
 
-    let componentDidMount {state, setState, handler} => {        
+    let componentDidMount {state, setState, handler, updater} => {        
         let data = Js_json.parse {| {"id" : "chris"} |};
         
         let c = Js.Null.empty;
         Js.log c;
 
-        let b = _bind handleData c state;
-        Js.log b; 
+        /*let b = _bind handleData c setState;
+        Js.log b; */
+        
+        let b = updater handleData; 
 
         let result = 
         b
@@ -49,7 +57,10 @@ module Home = {
     };
     
     
-    let render {state, props, updater} =>
+    let render {state, props, updater} => {
+
+    Js.log state;     
+
     <div>
         <Navigation name="MedInsight Engineering" pages={["About Us","Blog","Internal Metrics","Jobs"]}/>
         <Row>
@@ -79,6 +90,7 @@ module Home = {
         </Row>
         /*<Markdown markup=text />*/
     </div>;
+    };
 };
 
 include ReactRe.CreateComponent Home;
