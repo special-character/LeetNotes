@@ -22793,6 +22793,7 @@ module.exports = getIteratorFn;
 var Col        = __webpack_require__(220);
 var Row        = __webpack_require__(228);
 var Ajax       = __webpack_require__(219);
+var List       = __webpack_require__(107);
 var Curry      = __webpack_require__(25);
 var Panel      = __webpack_require__(227);
 var React      = __webpack_require__(0);
@@ -22818,8 +22819,12 @@ var name = "Home";
 
 function handleData(param, data) {
   var stateSetter = function () {
+    var ncl_000 = /* record */[
+      /* id */data.id,
+      /* content */data.content
+    ];
     var ncl = /* :: */[
-      data,
+      ncl_000,
       /* [] */0
     ];
     return /* record */[/* contentList */ncl];
@@ -22838,7 +22843,15 @@ function componentDidMount(param) {
 }
 
 function render(param) {
-  console.log(param[/* state */0]);
+  var comps = List.map(function (x) {
+        return Col.createElement(4)(/* :: */[
+                    Panel.createElement("Backend", "primary")(/* :: */[
+                          x[/* content */1],
+                          /* [] */0
+                        ], /* None */0, /* None */0, /* () */0),
+                    /* [] */0
+                  ], /* None */0, /* None */0, /* () */0);
+      }, param[/* state */0][/* contentList */0]);
   return React.createElement("div", undefined, Curry._4(Navigation.createElement(/* :: */[
                       "About Us",
                       /* :: */[
@@ -22869,19 +22882,10 @@ function render(param) {
                 ], /* None */0, /* None */0, /* () */0), Row.createElement(/* :: */[
                   Col.createElement(2)(/* [] */0, /* None */0, /* None */0, /* () */0),
                   /* :: */[
-                    Col.createElement(4)(/* :: */[
-                          Panel.createElement("Backend", "primary")(/* [] */0, /* None */0, /* None */0, /* () */0),
-                          /* [] */0
-                        ], /* None */0, /* None */0, /* () */0),
+                    ReactRe.listToElement(comps),
                     /* :: */[
-                      Col.createElement(4)(/* :: */[
-                            Panel.createElement("FrontEnd", "danger")(/* [] */0, /* None */0, /* None */0, /* () */0),
-                            /* [] */0
-                          ], /* None */0, /* None */0, /* () */0),
-                      /* :: */[
-                        Col.createElement(2)(/* [] */0, /* None */0, /* None */0, /* () */0),
-                        /* [] */0
-                      ]
+                      Col.createElement(2)(/* [] */0, /* None */0, /* None */0, /* () */0),
+                      /* [] */0
                     ]
                   ]
                 ], /* None */0, /* None */0, /* () */0));

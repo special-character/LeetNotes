@@ -7,7 +7,6 @@ module Home = {
     include ReactRe.Component.Stateful;
     type props = {name: string}; 
     type contentItem = {
-        .
         id: string,
         content: string
     };
@@ -19,7 +18,8 @@ module Home = {
     let handleData {setState} data => {
 
         let stateSetter {state} => { 
-            let ncl = [data];
+
+            let ncl = [{ id:data##id, content:data##content}];
             {...state, contentList : ncl}
         };
         setState stateSetter;
@@ -37,10 +37,19 @@ module Home = {
         None; 
     };
     
-    
     let render {state, props, updater} => {
 
-    Js.log state;     
+    let { contentList } = state;
+
+    let comps =
+        contentList
+        |> List.map (fun x =>  
+        <Col md=4>
+            <Panel header="Backend" bsStyle="primary">
+                (ReactRe.stringToElement x.content)
+            </Panel>
+        </Col>
+        );
 
     <div>
         <Navigation name="MedInsight Engineering" pages={["About Us","Blog","Internal Metrics","Jobs"]}/>
@@ -58,18 +67,10 @@ module Home = {
         <Row>
             <Col md=2>
             </Col>
-            <Col md=4>
-                <Panel header="Backend" bsStyle="primary">
-                </Panel>
-            </Col>
-            <Col md=4>
-                <Panel header="FrontEnd" bsStyle="danger">
-                </Panel>
-            </Col>
+            (ReactRe.listToElement comps) 
             <Col md=2>
             </Col>
         </Row>
-        /*<Markdown markup=text />*/
     </div>;
     };
 };
