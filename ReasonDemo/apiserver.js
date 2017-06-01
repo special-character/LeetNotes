@@ -24,7 +24,15 @@ app.get('/listUsers', function (req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
 
     var result = {"id" : "chris",
-                  "content" : "#hello, markdown!"
+                  "content" : `An h2 header
+------------
+
+Here's a numbered list:
+
+ 1. first item
+ 2. second item
+ 3. third item
+`
                  }
     res.end(JSON.stringify(result));
 })

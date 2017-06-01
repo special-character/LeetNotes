@@ -7,9 +7,9 @@ namespace BlogWebApi.Models
 {
     public class Blog
     {
-        public int Id { get; set; }
-        public string Content { get; set; }
-        public string Author { get; set; }
-        public string Type { get; set; } 
+        public int id { get; set; }
+        public string content { get; set; }
+        public string author { get; set; }
+        public string blogType { get; set; } 
     }
 }

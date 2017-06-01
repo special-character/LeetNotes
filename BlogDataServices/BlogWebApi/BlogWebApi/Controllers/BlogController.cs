@@ -11,7 +11,7 @@ namespace BlogWebApi.Controllers
     public class BlogController : ApiController
     {
         Blog[] blogs = new Blog[] {
-            new Blog { Id = 1, Author = "Chris Workman", Content = "Hello World", Type = "FrontEnd" }
+            new Blog { id = 1, author = "Chris Workman", content = "Hello World", blogType = "FrontEnd" }
         };
 
         [HttpGet]

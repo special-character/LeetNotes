@@ -8,7 +8,9 @@ module Home = {
     type props = {name: string}; 
     type contentItem = {
         id: string,
-        content: string
+        content: string,
+        author: string,
+        blogType: string
     };
     type state = {
         contentList : list contentItem  
@@ -18,9 +20,16 @@ module Home = {
     let handleData {setState} data => {
 
         let stateSetter {state} => { 
+            
+            let blogList =
+            data##blogList
+            |> List.map (fun bp => { id:bp##id,    
+                                       content:bp##content,
+                                       author:bp##author,
+                                       blogType:bp##blogType
+                                   });
 
-            let ncl = [{ id:data##id, content:data##content}];
-            {...state, contentList : ncl}
+            {...state, contentList : blogList}
         };
         setState stateSetter;
         None
@@ -33,7 +42,7 @@ module Home = {
     let componentDidMount {state, setState, handler, updater} => {        
         
         updater handleData
-        |> Ajax._then (Ajax.ajaxPost "http://localhost:8081/listUsers" );
+        |> Ajax._then (Ajax.ajaxPost "http://localhost:2878/api/Blog/blogs" );
         None; 
     };
     
