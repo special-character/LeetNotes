@@ -57,7 +57,7 @@ module Home = {
         contentList
         |> List.map (fun x =>  
         <Col md=4>
-            <Panel header="Backend" bsStyle="primary">
+            <Panel header=(x.author ^ " : " ^ x.blogType) bsStyle="primary">
                 <Markdown markup=x.content/>
             </Panel>
         </Col>
