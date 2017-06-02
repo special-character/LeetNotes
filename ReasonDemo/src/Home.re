@@ -23,7 +23,8 @@ module Home = {
             
             let blogList =
             data##blogList
-            |> List.map (fun bp => { id:bp##id,    
+            |> Array.to_list
+            |> List.map (fun bp => {   id:bp##id,    
                                        content:bp##content,
                                        author:bp##author,
                                        blogType:bp##blogType
