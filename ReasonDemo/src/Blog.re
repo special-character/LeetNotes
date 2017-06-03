@@ -2,20 +2,20 @@ open Pervasives;
 open ReactRe;
 open Markdown; 
 
-module Home = {
+module Blog = {
     
     include ReactRe.Component.Stateful;
-    type props = {name: string}; 
     type contentItem = {
         id: string,
         content: string,
         author: string,
         blogType: string
     };
+    type props = unit;
     type state = {
         contentList : list contentItem  
     };
-    let name = "Home";
+    let name = "Blog";
 
     let handleData {setState} data => {
 
@@ -64,18 +64,6 @@ module Home = {
         );
 
     <div>
-        <Navigation name="MedInsight Engineering" pages={["About Us","Blog","Internal Metrics","Jobs"]}/>
-        <Row>
-            <Col md=2>
-            </Col>
-                <Col md=8>
-                    <Jumbotron>
-                        <h2>(ReactRe.stringToElement "Home of MedInsight Engineering")</h2>
-                    </Jumbotron>
-                </Col>
-            <Col md=2>
-            </Col>
-        </Row>
         <Row>
             <Col md=2>
             </Col>
@@ -87,6 +75,6 @@ module Home = {
     };
 };
 
-include ReactRe.CreateComponent Home;
+include ReactRe.CreateComponent Blog;
 
-let createElement ::name => wrapProps {name: name};
+let createElement = wrapProps ();
