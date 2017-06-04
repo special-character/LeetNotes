@@ -20,6 +20,14 @@ module ContentContainer = {
         currentPage : Blog 
     };
 
+    let convertStringToPage str => {
+        switch str {
+        | "About Us" => AboutUs
+        | "Blog" => Blog
+        | "Internal Metrics" => InternalMetrics
+        | "Jobs" => Jobs
+        };
+    };
     
     let render {state, props, updater} => {
 
@@ -28,13 +36,24 @@ module ContentContainer = {
     let pageToRender =
         switch currentPage {
         | Blog => <Blog />
+        | AboutUs => <AboutUs />
         | _    => <Blog />
     };
     
-    let switchPage {state} event => {
-        let a = event;
-        Js.log a;
-        Some {...state, currentPage: Blog };
+    let switchPage {state, props} event => {
+        
+        let newPage =
+        switch event {
+        | "About Us" => AboutUs
+        | "Blog" => Blog
+        | "Internal Metrics" => Blog
+        | "Jobs" => Blog
+        };
+
+
+        ((convertStringToPage event) == state.currentPage )
+        ? None  
+        : Some {...state, currentPage: newPage };
     };
 
     <div>

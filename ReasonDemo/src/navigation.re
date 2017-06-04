@@ -7,7 +7,7 @@ module Navigation = {
     type props = {
                    pages: list string, 
                    name: string,
-                   pageHandler: unit => unit
+                   pageHandler: string => unit
                  };
     let name = "Navigation";
 
@@ -16,7 +16,7 @@ module Navigation = {
         let { pages, name, pageHandler } = props;
         let navItems = pages 
                     |> List.map (fun name => 
-                    <NavItem eventKey={1} onClick=(fun name => pageHandler() ) href="#">(ReactRe.stringToElement name)</NavItem>
+                    <NavItem eventKey={1} onClick=(fun _ => pageHandler name ) href="#">(ReactRe.stringToElement name)</NavItem>
                     );
     
         <div>
