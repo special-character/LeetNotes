@@ -30,23 +30,29 @@ module ContentContainer = {
         | Blog => <Blog />
         | _    => <Blog />
     };
+    
+    let switchPage {state} event => {
+        let a = event;
+        Js.log a;
+        Some {...state, currentPage: Blog };
+    };
 
     <div>
-        <Navigation name="MedInsight Engineering" pages={["About Us","Blog","Internal Metrics","Jobs"]}/>
-        <Row>
-            <Col md=2>
-            </Col>
-                <Col md=8>
-                    <Jumbotron>
-                        <h2>(ReactRe.stringToElement "Home of MedInsight Engineering")</h2>
-                    </Jumbotron>
+        <Navigation name="MedInsight Engineering" pageHandler=(updater switchPage) pages={["About Us","Blog","Internal Metrics","Jobs"]} />
+            <Row>
+                <Col md=2>
                 </Col>
-            <Col md=2>
-            </Col>
-        </Row>
-        <Row>
-            {pageToRender}
-        </Row>
+                    <Col md=8>
+                        <Jumbotron>
+                            <h2>(ReactRe.stringToElement "Home of MedInsight Engineering")</h2>
+                        </Jumbotron>
+                    </Col>
+                <Col md=2>
+                </Col>
+            </Row>
+            <Row>
+                {pageToRender}
+            </Row>
     </div>;
     };
 };

@@ -53,21 +53,25 @@ module Blog = {
 
     let md = MarkdownConverter.mdInit();
     
-    let comps =
+    let blogPosts =
         contentList
         |> List.map (fun x =>  
-        <Col md=4>
-            <Panel header=(x.author ^ " : " ^ x.blogType) bsStyle="primary">
-                <Markdown markup=x.content/>
-            </Panel>
-        </Col>
+        <Row>
+            <Col md=12>
+                <Panel header=(x.author ^ " : " ^ x.blogType) bsStyle="primary">
+                    <Markdown markup=x.content/>
+                </Panel>
+            </Col>
+        </Row>
         );
 
     <div>
         <Row>
             <Col md=2>
             </Col>
-            (ReactRe.listToElement comps) 
+                <Col md=8>
+                    (ReactRe.listToElement blogPosts) 
+                </Col>
             <Col md=2>
             </Col>
         </Row>
