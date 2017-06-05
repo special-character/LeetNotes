@@ -7,6 +7,7 @@
     "build": "npm-run-all build:*",
     "build:bsb": "bsb -w",
     "build:webpack": "webpack --watch",
+    "watch-sass": "node-sass --source-map true -w css/style.scss build/css/bundle.css",
     "deploy": "nodemon server.js",
     "deploy-api": "nodemon apiserver.js"
   },
@@ -15,7 +16,10 @@
   "devDependencies": {
     "bs-loader": "^1.0.0",
     "bs-platform": "^1.5.0",
+    "css-loader": "^0.28.4",
     "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
     "path": "^0.12.7",
@@ -23,6 +27,8 @@
     "reason-react": "^0.1.2",
     "reductive": "0.0.1",
     "rehydrate": "git+https://github.com/reasonml/rehydrate.git",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.1",
     "webpack": "^2.2.1"
   },
   "dependencies": {

@@ -57,8 +57,6 @@ module Page = {
     </Row>
     <div>(ReactRe.stringToElement (Js.String.make state.counter))</div>
     <Row>
-    <Panel header="Backend" bsStyle="primary">
-    </Panel>
     </Row>
     </div>;
 };

@@ -57,7 +57,7 @@ module ContentContainer = {
     };
 
     <div>
-        <Navigation name="MedInsight Engineering" pageHandler=(updater switchPage) pages={["About Us","Blog","Internal Metrics","Jobs"]} />
+        <Navigation name="MedInsight Engineering" pageHandler=(updater switchPage) pages={["Blog","About Us","Internal Metrics","Jobs"]} />
             <Row>
                 <Col md=2>
                 </Col>

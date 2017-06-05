@@ -2,6 +2,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: './lib/js/src/simpleRoot.js',
@@ -13,7 +14,14 @@ module.exports = {
   module: {
     rules: [
       // Set up Reason and OCaml files to use the loader
-      { test: /\.(re|ml)$/, use: 'bs-loader' },
+      { 
+        test: /\.(re|ml)$/, 
+        use: 'bs-loader' 
+      }, 
+      {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('css!sass')
+      }
     ]
   },
   resolve: {
@@ -22,6 +30,9 @@ module.exports = {
     alias : {
       js : path.resolve(__dirname, 'lib', 'js', 'src')
     }
-  }
+  },
+  plugins: [
+        new ExtractTextPlugin('build/css/main.css')
+    ]
 };
 

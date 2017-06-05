@@ -18,11 +18,9 @@ module AboutUs = {
 
     
     let render {state, props, updater} => {
-
-
     <div>
         <Row>
-            (ReactRe.stringToElement "1") 
+            (ReactRe.stringToElement "aa") 
         </Row>
     </div>;
     };

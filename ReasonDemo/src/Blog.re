@@ -50,15 +50,23 @@ module Blog = {
     let render {state, props, updater} => {
 
     let { contentList } = state;
-
     let md = MarkdownConverter.mdInit();
+    let colorConverter color =>
+        switch color {
+        | "FrontEnd" => "success"
+        | "BackEnd" => "warning"
+        };
     
+    let nameBadge name badgeColor => <Label bsStyle=(colorConverter badgeColor)>
+                                         (ReactRe.stringToElement name)
+                                     </Label>;
+
     let blogPosts =
         contentList
         |> List.map (fun x =>  
         <Row>
             <Col md=12>
-                <Panel header=(x.author ^ " : " ^ x.blogType) bsStyle="primary">
+                <Panel header=(nameBadge x.blogType x.blogType)>
                     <Markdown markup=x.content/>
                 </Panel>
             </Col>
