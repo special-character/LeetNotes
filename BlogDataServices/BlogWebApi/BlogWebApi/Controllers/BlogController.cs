@@ -31,19 +31,20 @@ namespace BlogWebApi.Controllers
                 try
                 {
                     conn.Open();
-                    var command = new SqlCommand("Select * from dbo.BlogPosts", conn);
+                    var command = new SqlCommand("dbo.GetBlogsAndTags", conn);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
 
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            var i = 0;
                             var Id = reader.GetInt32(0);
                             var Content = reader.GetString(1);
                             var Author = reader.GetString(2);
                             var BlogType = reader.GetString(3);
+                            var Tags = Blog.buildTags(reader.GetString(4));
 
-                            blogs.Add(new Blog { id = Id , author = Author, content = Content, blogType = BlogType });
+                            blogs.Add(new Blog { id = Id , author = Author, content = Content, blogType = BlogType, tags = Tags });
                         }
 
                         return blogs; 

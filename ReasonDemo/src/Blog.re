@@ -9,7 +9,8 @@ module Blog = {
         id: string,
         content: string,
         author: string,
-        blogType: string
+        blogType: string,
+        tags: list string
     };
     type props = unit;
     type state = {
@@ -27,7 +28,8 @@ module Blog = {
             |> List.map (fun bp => {   id:bp##id,    
                                        content:bp##content,
                                        author:bp##author,
-                                       blogType:bp##blogType
+                                       blogType:bp##blogType,
+                                       tags:bp##tags
                                    });
 
             {...state, contentList : blogList}
@@ -43,14 +45,13 @@ module Blog = {
     let componentDidMount {state, setState, handler, updater} => {        
         
         updater handleData
-        |> Ajax._then (Ajax.ajaxPost "http://localhost:2878/api/Blog/blogs" );
+        |> Ajax._then (Ajax.ajaxPost (DocElements.endpointApiRequestFormatter "blogs") );
         None; 
     };
     
     let render {state, props, updater} => {
 
     let { contentList } = state;
-    let md = MarkdownConverter.mdInit();
     let colorConverter color =>
         switch color {
         | "FrontEnd" => "success"
