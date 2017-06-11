@@ -29,7 +29,7 @@ module Blog = {
                                        content:bp##content,
                                        author:bp##author,
                                        blogType:bp##blogType,
-                                       tags:bp##tags
+                                       tags: Array.get bp##tags 0
                                    });
 
             {...state, contentList : blogList}
@@ -61,6 +61,22 @@ module Blog = {
     let nameBadge name badgeColor => <Label bsStyle=(colorConverter badgeColor)>
                                          (ReactRe.stringToElement name)
                                      </Label>;
+    
+    let tagsByCount = 
+        contentList
+        |> Array.of_list
+        |> Array.map (fun x => Js.String.make x.tags )
+        |> Array.fold_left (fun acc ele => (acc ^ ",") ^ ele ) ""
+        |> Js.String.split ","
+        |> Array.fold_left (
+                                fun (acc: Js.Dict.t int) (ele:string) => switch (Js.Dict.get acc ele) {
+                                | None   => { Js.Dict.set acc ele 1; acc;}
+                                | Some v => { Js.Dict.set acc ele (v + 1); acc;};
+                                }
+                            ) (Js.Dict.empty ());
+        
+
+    Js.log tagsByCount;
 
     let blogPosts =
         contentList
