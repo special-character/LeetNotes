@@ -74,9 +74,30 @@ module Blog = {
                                 | Some v => { Js.Dict.set acc ele (v + 1); acc;};
                                 }
                             ) (Js.Dict.empty ());
-        
 
-    Js.log tagsByCount;
+    /*Wildly frustrating. Bucklescript no longer suppers Js.Dict.values or Js.Dict.entries so I need to grab
+    the keys and iterate through the array with said keys to get values*/
+    let tagKeys = Js.Dict.keys tagsByCount;
+    
+    let badges = Array.map (
+        fun _key => (<p className="tagStyling">(ReactRe.stringToElement (Js.String.make _key))
+                        <Badge>
+                            (ReactRe.stringToElement (Js.String.make (Js.Dict.unsafeGet tagsByCount _key)))
+                        </Badge>
+                     </p>
+                    )
+        ) tagKeys; 
+
+    let badgePanel = 
+        <Row>
+            <Col md=2>
+            </Col>
+            <Col md=8>
+                (ReactRe.arrayToElement badges)
+            </Col>
+            <Col md=2>
+            </Col>
+        </Row>;
 
     let blogPosts =
         contentList
@@ -93,6 +114,7 @@ module Blog = {
     <div>
         <Row>
             <Col md=2>
+            badgePanel
             </Col>
                 <Col md=8>
                     (ReactRe.listToElement blogPosts) 
